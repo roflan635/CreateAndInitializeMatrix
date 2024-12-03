@@ -3,6 +3,14 @@
 
 #include "pch.h"
 #include "Task.h"
+int** CreateAndInitializeMatrix(int cols, int rows)
+{
+	if (rows <= 0 || cols <= 0) return nullptr;
+	int** arr = new int* [rows]; // выделяем память под массив указателей на строки
+	for (int i = 0; i < rows; i++)
+		arr[i] = new int[cols]; // выделяем память под массив для каждой строки
+https://github.com/movesoft18/IS2023.git
+}
 
 
 /*
