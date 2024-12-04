@@ -5,21 +5,27 @@
 #include "Task.h"
 #include <iostream>
 
-void PrintMatrix(int arr, int cols, int rows)
+void FillMatrix(int cols, int rows) 
 {
-	for (int j = 0; j < rows; j++)
-	{
-		for (int i = 0; i < cols; i++)
-			std::cout << arr[j][i] << " ";
-		std::cout << std::endl;
-	}
-}
-
-void FillMatrix(int arr, int cols, int rows)
-{
+	int** arr = new int* [rows]; // выделяем память под массив указателей на строки
+	for (int i = 0; i < rows; i++)
+		arr[i] = new int[cols]; // выделяем память под массив для каждой строки
+	// заполняем массив с консоли
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < cols; j++)
 			std::cin >> arr[i][j];
+	// печать массива
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+			std::cout << arr[i][j];
+		std::cout << std::endl;
+	}
+	// удаление массива
+	for (int i = 0; i < rows; i++)
+		delete[] arr[i];
+	delete[] arr;
+	arr = nullptr;
 }
 
 int** CreateAndInitializeMatrix(int cols, int rows)
@@ -29,9 +35,6 @@ int** CreateAndInitializeMatrix(int cols, int rows)
 	for (int i = 0; i < rows; i++)
 		a[i] = new int[cols];
 	return a;
-
-	PrintMatrix(arr, cols, rows);
-	FillMatrix(arr, cols, rows);
 }
 
 //https://github.com/movesoft18/IS2023.git
